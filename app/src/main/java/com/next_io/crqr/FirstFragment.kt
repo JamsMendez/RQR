@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
 
@@ -34,7 +35,7 @@ class FirstFragment : Fragment() {
         }
 
         view.findViewById<Button>(R.id.btn_create_qr).setOnClickListener {
-            Sha
+            Snackbar.make(view, "No hay nada ....", Snackbar.LENGTH_SHORT).show()
         }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
