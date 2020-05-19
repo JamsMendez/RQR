@@ -7,15 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
 import com.google.zxing.integration.android.IntentIntegrator
-import com.google.zxing.integration.android.IntentResult
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class FirstFragment : Fragment() {
+
+    private var coordinatorLayout: CoordinatorLayout? = null
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +36,8 @@ class FirstFragment : Fragment() {
             intent.initiateScan()
         }
 
+        this.coordinatorLayout = activity?.findViewById(R.id.coordinator_layout)
+
         view.findViewById<Button>(R.id.btn_create_qr).setOnClickListener {
             Snackbar.make(view, "No hay nada ....", Snackbar.LENGTH_SHORT).show()
         }
@@ -48,7 +52,9 @@ class FirstFragment : Fragment() {
                 Log.e("QR-LOG", "Cancelado ...")
             }else {
                 val value = intentResult.contents
-                Snackbar.make(view,value, Snackbar.LENGTH_SHORT).show()
+
+                Snackbar.make(this.coordinatorLayout!!, value, Snackbar.LENGTH_SHORT).show()
+
                 Log.e("QR-LOG", value)
             }
 
