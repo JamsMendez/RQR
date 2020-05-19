@@ -48,6 +48,7 @@ class FirstFragment : Fragment() {
                 Log.e("QR-LOG", "Cancelado ...")
             }else {
                 val value = intentResult.contents
+                Snackbar.make(view,value, Snackbar.LENGTH_SHORT).show()
                 Log.e("QR-LOG", value)
             }
 
